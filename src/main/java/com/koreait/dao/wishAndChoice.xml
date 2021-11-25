@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.koreait.dao.MybatisDAO">
+	
+	<insert id="insertWish" parameterType="itemVO">
+		insert into wish(img, id, furnitureName, grade) values(#{img}, #{id}, #{furnitureName}, #{grade})
+	</insert>
+	
+	<select id="itemCheck" parameterType="java.util.HashMap" resultType="int">
+		select count(*) from subscript where id=#{id} and grade=#{grade}
+	</select>
+	
+	<insert id="choiceItem" parameterType="java.util.HashMap">
+		insert into subscript(img, id, furnitureName, grade) values(#{img}, #{id}, #{furnitureName}, #{grade})
+	</insert>
+	
+	<select id="selectGradeItem" parameterType="java.util.HashMap" resultType="int">
+		select count(*) from subscript where id=#{id} and grade=#{grade}
+	</select>
+	
+	<select id="selectSubscript" parameterType="String" resultType="itemVO">
+		select * from subscript where id=#{value}
+	</select>
+	
+	<delete id="deleteItem" parameterType="itemVO">
+		delete from subscript where id=#{id} and img=#{img}
+	</delete>
+	
+	<select id="selectWish" parameterType="String" resultType="itemVO">
+		select * from wish where id=#{id}
+	</select>
+	
+	<delete id="deleteWishItem" parameterType="itemVO">
+		delete from wish where id=#{id} and img=#{img}
+	</delete>
+	
+	<delete id="deleteItems" parameterType="String">
+		delete from subscript where id=#{id}
+	</delete>
+	
+	<delete id="deleteWishAll" parameterType="String">
+		delete from wish where id=#{id}
+	</delete>
+	
+	
+</mapper>

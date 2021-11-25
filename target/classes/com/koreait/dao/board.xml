@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.koreait.dao.MybatisDAO">
+	
+	<!-- Q/A 게시글 입력 -->
+	<insert id="insert" parameterType="vo">
+		insert into board(id,title, content,gup,lev,seq) values(#{id},#{title},#{content},#{gup},0,0)
+	</insert>
+	
+	<!-- Q/A 게시글 입력전에 gup 얻어오는 작업 -->
+	<select id="gup" resultType="int">
+		select max(idx)+1 from board
+	</select>
+	
+	<!-- Q/A 게시글 개수 얻어오는 작업 -->
+	<select id="totalCount" resultType="int">
+		select count(*) from board
+	</select>
+
+	<!-- Q/A 게시글 출력할 게시글 얻어오는 작업 -->
+	<select id="selectList" parameterType="java.util.HashMap" resultType="vo">
+		select * from(
+			select @rownum:=@rownum+1 as rnum, a.* from(
+				select * from board order by gup desc, seq asc
+			)a, (select @rownum:=0)t
+		)ss where rnum between #{startNo} and #{endNo}
+	</select>
+		
+	<!-- content.jsp에서 보여줄 게시글 찾아오는 작업 -->
+	<select id="selectContent" parameterType="int" resultType="vo">
+		select * from board where idx=${value}
+	</select>
+	
+	<!-- 댓글 출력 순서를 맞추기 위해서 기존의 댓글에 seq를 1증가시키는 작업 -->
+	<update id="seqPlus" parameterType="int">
+		update replyboard set seq=seq+1 where gup=${value} and lev=1
+	</update>
+	
+	<!-- 댓글 입력 -->
+	<insert id="reply" parameterType="com.koreait.vo.ReplyVO">
+		insert into replyboard(reply,gup,lev,seq,id) values(#{reply},#{idx},1,0,#{id})
+	</insert>
+	
+	<!-- 해당 글의 총 댓글 수 -->
+	<select id="replyTotalCount" parameterType="int" resultType="int">
+		select count(*) from replyboard where gup=#{value}
+	</select>
+	
+	<!-- 출력할 댓글 얻어오는 작업 -->
+	<select id="selectReplyList" parameterType="java.util.HashMap" resultType="com.koreait.vo.ReplyVO">
+		select * from(
+			select @rownum:=@rownum+1 as rnum, a.* from(
+				select * from replyboard where gup=#{gup} order by seq asc
+			)a, (select @rownum:=0)t
+		)ss where rnum between #{startNo} and #{endNo}
+	</select>
+	
+	<!-- id로 검색시 글 수 -->
+	<select id="idSearchCount" parameterType="String" resultType="int">
+		select count(*) from board where id like '%${value}%'
+	</select>
+
+	<!-- 제목으로 검색시 글 수 -->
+	<select id="titleSearchCount" parameterType="String" resultType="int">
+		select count(*) from board where title like '%${value}%'
+	</select>
+	
+	<!-- 제목, 아이디로 검색시 글 수 -->
+	<select id="idTitleSearchCount" parameterType="String" resultType="int">
+		select count(*) from board where id like '%${value}%' or title like '%${value}%'
+	</select>
+	
+	<!-- 들아간 글 조회수 증가 -->
+	<update id="hitPlus" parameterType="int">
+		update board set hit=hit+1 where idx=#{value}
+	</update>
+	
+	<!-- 댓글 수 증가 -->
+	<update id="replyCountPlus" parameterType="int">
+		update board set replyCount=replyCount+1 where idx=#{value}
+	</update>
+	
+	<!-- id로 검색 후 출력 글 -->
+	<select id="selectIdSearchList" parameterType="com.koreait.vo.SearchParam" resultType="vo">
+		select * from(
+			select @rownum:=@rownum+1 as rnum, a.* from(
+				select * from (
+					select * from board where id like '%${search}%'
+					)c order by seq asc
+			)a, (select @rownum:=0)t
+		)ss where rnum between #{startNO} and #{endNO};
+	</select>
+	
+	<!-- 제목으로 검색 후 출력 글 -->
+	<select id="selectTitleSearchList" parameterType="com.koreait.vo.SearchParam" resultType="vo">
+		select * from(
+			select @rownum:=@rownum+1 as rnum, a.* from(
+				select * from (
+					select * from board where title like '%${search}%'
+					)c order by seq asc
+			)a, (select @rownum:=0)t
+		)ss where rnum between #{startNO} and #{endNO};
+	</select>
+	
+	<!-- 제목과 id로 검색 후 출력 글 -->
+	<select id="selectIdTitleSearchList" parameterType="com.koreait.vo.SearchParam" resultType="vo">
+		select * from(
+			select @rownum:=@rownum+1 as rnum, a.* from(
+				select * from (
+					select * from board where id like '%${search}%' or title like '%${search}%'
+					)c order by seq asc
+			)a, (select @rownum:=0)t
+		)ss where rnum between #{startNO} and #{endNO};
+	</select>
+	
+</mapper>

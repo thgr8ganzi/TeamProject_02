@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.koreait.dao.MybatisDAO">
+	
+	<!-- 회원가입 입력 정보 저장 -->
+	<insert id="create" parameterType="memberVO"> <!-- 알리아스설정 -->
+		insert into member(id, password, name, addr, tel, phone, email, sex) value(#{id}, #{password}, #{name}, #{addr}, #{tel}, #{phone}, #{email}, #{sex})
+	</insert>
+	
+	<!-- 아이디 중복 여부 체크 -->
+	<select id="idCheck" parameterType="String" resultType="int">
+		select count(*) from member where id=#{value}
+	</select>
+	
+	<!-- 로그인 -->
+	<select id="login" parameterType="memberVO" resultType="int">
+		select count(*) from member where id = #{id} and password = #{password}
+	</select>
+	
+	<!-- 회원탈퇴 -->
+	<delete id="memberDelete" parameterType="memberVO">
+		delete from member where id = #{id} and password = #{password}
+	</delete>
+	
+	<!-- 회원정보 -->
+	<select id="memberView" parameterType="String" resultType="memberVO">
+		select * from member where id = #{value}
+	</select>
+	
+	<!-- 정보 수정 -->
+	<update id="memberView2" parameterType="java.util.HashMap">
+        update member set name=#{name}, password = #{password}, email = #{email}, addr = #{addr}, phone = #{phone}, sex = #{sex} where id = #{id};
+    </update>
+	
+	<!-- 이메일로 아이디 찾기 -->
+	<select id="userIdSearch" parameterType="String" resultType="String">
+		select id from member where email = #{email}
+	</select>
+	
+	<select id="checkPhone" parameterType="String" resultType="int">
+		select count(*) from member where phone=#{value}
+	</select>
+	
+	<select id="selectId" parameterType="String" resultType="String">
+		select id from member where phone=#{value}
+	</select>
+	
+	<select id="checkId" parameterType="java.util.HashMap" resultType="int">
+		select count(*) from member where id = #{id} and phone = #{phoneNum}
+	</select>
+	
+	<update id="changePW" parameterType="memberVO">
+		update member set password = #{password} where id = #{id}
+	</update>
+	
+	<select id="selectGrade" parameterType="String" resultType="int">
+		select grade from member where id=#{value}
+	</select>
+	
+	<update id="subscript" parameterType="memberVO">
+		update member set grade=#{grade} where id=#{id}
+	</update>
+	
+	<select id="selectItem" parameterType="java.util.HashMap" resultType="int">
+		select count(*) from wish where id=#{id} and img=#{img}
+	</select>
+	
+	<select id="selectItemChoice" parameterType="java.util.HashMap" resultType="int">
+		select count(*) from subscript where id=#{id} and img=#{img}
+	</select>
+	
+	<update id="choiceItemCheckNum" parameterType="java.util.HashMap">
+		update member set ${grade}=${grade}+1 where id=#{id}
+	</update>
+	
+	<delete id="deleteMember" parameterType="String">
+		delete from member where id=#{value}
+	</delete>
+	
+	<update id="deleteSubscript" parameterType="String">
+		update member set grade=0 where id=#{value}
+	</update>
+	
+</mapper>

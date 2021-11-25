@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="vo" class="com.koreait.vo.BoardVO"></bean>
+	
+	<bean id="boardList" class="com.koreait.vo.BoardList"></bean>
+	
+	<!-- MemberVO 클래스의 bean을 만든다 -->
+	<bean id="memberVO" class="com.koreait.vo.MemberVO"></bean>
+	
+	<bean id="replyBoardList" class="com.koreait.vo.ReplyBoardList"></bean>
+	
+	<bean id="searchParam" class="com.koreait.vo.SearchParam"></bean>
+	
+	<bean id="itemVO" class="com.koreait.vo.ItemVO"></bean>
+	
+	<bean id="itemList" class="com.koreait.vo.ItemList"></bean>
+</beans>

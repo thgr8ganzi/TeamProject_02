@@ -1,0 +1,23 @@
+.textarea_input{
+	background-color: #dcdcdc;
+	border-radius: 8px;
+}
+.contentIn{
+	background-color: #dcdcdc;
+	border-radius: 8px;
+	outline: none;
+}
+.title{
+	color: #dcdcdc;
+}
+.btn{
+	border:1px solid #5a5a5a;
+	background-color: #3c3c3c;
+	color:white;
+	position:relative;
+	right: 0px;
+}
+.btnFlex{
+	display: flex;
+	justify-content: flex-end;
+}

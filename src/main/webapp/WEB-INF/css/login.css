@@ -1,0 +1,206 @@
+*{
+  	margin: 0px;
+  	padding: 0px;
+  	text-decoration: none;
+  	font-family:sans-serif;
+}
+
+.header h2{
+	color: white;
+  	margin: 20px;
+}
+
+
+
+.loginForm {
+	position:absolute;
+  	width:300px;
+  	height:450px;
+  	padding: 30px, 20px;
+  	background-color:black;
+  	text-align:center;
+  	top:50%;
+  	left:50%;
+  	transform: translate(-50%,-50%);
+  	border-radius: 15px;
+  	opacity: 0.8;
+}
+
+.loginForm2 {
+	position:absolute;
+  	width:300px;
+  	height:450px;
+  	padding: 30px, 20px;
+  	background-color:black;
+  	text-align:center;
+  	top:50%;
+  	left:50%;
+  	transform: translate(-50%,-50%);
+  	border-radius: 15px;
+  	opacity: 0.8;
+}
+
+.joinForm {
+	position:absolute;
+  	width:1100px;
+  	height: auto;
+  	padding: 30px, 20px;
+  	background-color:black;
+  	text-align:center;
+  	top:50%;
+  	left:50%;
+  	transform: translate(-50%,-50%);
+  	border-radius: 15px;
+  	opacity: 0.8;
+
+}
+
+.loginForm h1{
+	color: white;
+	text-align: left;
+  	margin: 35px;
+}
+.joinForm h1{
+	color: white;
+	text-align: center;
+  	margin: 50px;
+}
+
+.flex-container {
+	display: flex;
+	justify-content: center;
+	
+}
+
+.flex-btn {
+	display: flex;
+	justify-content: center;
+}
+
+.flex-btnbox {
+	width: 200px;
+	height: 40px;
+	margin-bottom: 40px;
+}
+
+
+
+.id {
+  	width: 100%;
+  	border:none;
+  	outline:none;
+  	color: #636e72;
+  	font-size:16px;
+  	height:25px;
+  	background: none;
+}
+
+.pw {
+  	width: 100%;
+  	border:none;
+  	outline:none;
+  	color: #636e72;
+  	font-size:16px;
+  	height:25px;
+  	background: none;
+}
+
+.btn {
+  	position:relative;
+  	left:40%;
+  	transform: translateX(-50%);
+  	margin-bottom: 40px;
+  	width:80%;
+  	height:40px;
+  	background: white;
+  	background-position: left;
+  	background-size: 200%;
+  	color:black;
+  	font-weight: bold;
+  	border:none;
+  	cursor:pointer;
+  	display:inline;
+}
+
+
+.btn:hover {
+	background-position: right;
+}
+
+.bottomText {
+
+  	text-align: center;
+  	color: white;
+}
+
+
+.flex-box1 {
+	padding: 10px 10px;	
+	margin: 20px 20px;
+
+	
+	}
+	
+.idForm{
+  	margin: 20px;
+  	padding: 10px 10px;
+	border-bottom: 2px solid #adadad;
+}
+
+.pwForm{
+  	margin: 20px;
+  	padding: 10px 10px;
+  	border-bottom: 2px solid #adadad;
+}
+
+	
+.idForm1{
+  	border-bottom: 2px solid #adadad;
+}
+.pwForm1{
+  	border-bottom: 2px solid #adadad;
+}
+.idConfirm{
+	width: 30%;	
+}
+
+.idConfirm input[type="button"]{
+	font-weight: bold;
+}
+
+
+.a{
+  	margin: 30px;
+  	padding: 10px 10px;
+}
+
+.backbutton {
+	position: relative;
+	left: 90px;
+	font-size: 20px;	
+	margin-bottom: 10px;
+}
+
+.findForm {
+	margin-bottom: 10px;
+	margin-left: 30px;
+	margin-right: 30px;
+  	padding: 10px 10px;
+	border-bottom: 2px solid #adadad;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
